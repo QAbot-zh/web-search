@@ -10,7 +10,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
     level=logging.INFO
 )
@@ -54,7 +54,7 @@ async def search():
         # 从搜索结果中获取最大结果数
         for r in islice(ddgs_gen, max_results):
             results.append(r)
-    print(f"IP: {request.remote_addr}, query: {keywords}")
+    # print(f"IP: {request.remote_addr}, query: {keywords}")
     # 返回一个json响应，包含搜索结果
     # return {'results': results}
     return json.dumps({'results': results}, ensure_ascii=False)
